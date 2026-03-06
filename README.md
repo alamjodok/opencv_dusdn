@@ -98,17 +98,76 @@ while True:
 cap.release()
 
 
-보고서
-mediapipe와 OpenCV를 활용한 손 감지 기반 페달 제어 시스템
-
-1.동기
-
-현재의 차량 운전에 있어 페달은 운전자가 가속과 감속을 조절하여 차량 속도를 제어하는 필수 안전 장치이다.
-하지만 하체에 제약이 있는 사용자에게는 이를 사용할 수 없어 운전이 불가능 하다.
-따라서 나는 손 감지 기반 페달 제어 시스템을 만들어 사용 대상자들의 편의성을 향상시키고자 한다.
 
 
-2. 알고리즘 설계
+논문?
+\documentclass[journal]{IEEEtran}
+
+\title{mediapipe와 OpenCV를 활용한 손 감지 기반 페달 제어 시스템}
+
+\author{정연우}
+
+\begin{document}
+
+\section{abstract}
+본 연군가 뭔가의 목적은 하체에 제약이 있는 운전자들의 편의성을 위한 손 감지 기반 페달 제어 시스템의 제작이다.
+mediapipe의 손 감지 코드를 사용하였고 OpenCV의 이미지 처리 기능을 활용하였다.
+
+
+\section{Introduction}
+
+현재의 차량 운전에 있어 페달은 운전자가 가속과 감속을 조절하여 차량 속도를 제어하는 필수 안전 장치이다.하지만 하체에 제약이 있는 사용자에게는 이를 사용할 수 없어 운전이 불가능 하다. 따라서 나는 손 감지 기반 페달 제어 시스템을 만들어 사용 대상자들의 편의성을 향상시키고자 한다.
+따라서 본 연구에서는 손 감지 기반 페달 제어 시스템의 가능성을 탐구하고자 한다.
+
+\section{Literature Review}
+
+손 감지 기술은 현실 세계와 디지털 세계의 상호작용에 큰 영햑을 끼쳤다. 손 동작은 비언어적 의사소통 방식으로 
+1. 일상생활 및 가전 (스마트 홈)
+
+\begin{itemize}
+    \item 스마트 TV/가전 제어: 리모컨 없이 손동작으로 채널을 변경하거나, 에어컨/냉장고의 기능을 제어합니다.
+    \item 제스처 인식 자동문/조명: 손짓으로 문을 열거나, 움직임을 감지하여 자동으로 조명이 켜지고 꺼지는 시스템입니다.
+    \item 스마트폰 동작 제어: 폰을 흔들어 기능을 실행하거나, 얼굴 모션으로 영상을 조작하는 기능입니다. 블로그 +5
+\end{itemize}
+2. 게임 및 엔터테인먼트
+
+\begin{itemize}
+    \item 모션 컨트롤 게임: 닌텐도 위(Wii)나 Xbox 키넥트처럼 사용자의 팔 동작이나 몸의 움직임을 센서가 감지하여 게임 내 캐릭터를 조종합니다.
+    \item VR/AR 체험: 가상현실(VR) 기기에서 손의 움직임을 실시간으로 인식하여 현실감 있는 상호작용을 제공합니다. 펀딩포유 +2
+\end{itemize}
+3. 헬스케어 및 운동 분석
+
+\begin{itemize}
+    \item 홈 피트니스/운동 분석: 카메라가 사용자의 운동 동작을 분석하여 정확한 자세를 가이드하거나, 운동 횟수(카운팅)를 측정합니다.
+    \item 재활 훈련: 사용자의 신체 움직임을 추적하여 재활 운동의 정확도를 높이고 진행 상황을 모니터링합니다. 위키독스 +2
+\end{itemize}
+4. 산업 현장 및 안전
+
+\begin{itemize}
+    \item 로봇 제어: 사람이 손짓으로 로봇에게 작업을 명령하거나, 움직임을 따라 하도록 제어합니다.
+    \item 작업자 안전 모니터링: 공장에서 작업자의 위험한 자세나 제한 구역 진입을 동작 인식 시스템이 감지하여 실시간 알림을 제공합니다. 위키독스 +3
+\end{itemize}
+5. 보안 및 모션 캡처
+
+\begin{itemize}
+    \item 보안 카메라: 움직임이 탐지되면 자동으로 촬영을 시작하여 침입자를 알리는 방범 시스템입니다.
+    \item 모션 캡처(MoCap): 영화, 게임 제작 시 실제 사람의 미세한 관절 움직임을 3D 데이터로 변환하여 디지털 캐릭터에 입히는 기술입니다. 모션테크놀로지 +3
+
+\end{itemize}
+ 등에 활용된다.
+
+자동차 인터페이스 에서도 손 인식 기술을 적용하려는 연구가 있다. (아래부터 다 논문 있었는데 출처가 사라졌다 ㅜㅜ지피티 물어볼것.) +내용도
+
+또한 Mediapipe를 사용한 모션 감지를 통한 연구도 있다.
+
+이와 같은 기존 연구들을 바탕으로 본 연구에서는 손 인식 기술을 활용한 페달 시스템의 가능성을 탐구하고, 실제 자동차에 적용 가능한 시스템을 만들 것이다.
+
+\section{Methods}
+
+무엇을써야하는가
+
+\section{Results}
+
 손가락의 감지 코드는 MediaPipe 솔루션 가이드 | Google AI Edge의 Python용 손 랜드마크 감지 가이드를 사용했다.
 
 #엄지 손가락 감지
@@ -128,83 +187,40 @@ tip.y < pip.y 라면 손가락이 펴져있다.
 손가락이 3개 펴져 있다면 'faster' 이다.
 손가락이 4개 펴져 있다면 'slower' 이다.
 
+\section{Discussion}
 
+본 연구는 MediaPipe로 손가락 개수 인식을 차량 제어에 적용하고 관련 선행 연구들을 근거로 제작했다. 단순히 손가락의 개수만으로 인식하기에 소수를  제외한 사지 중 일부가 없는 사람들이 편리하게 이용할 수  있다.
 
-
-관련 연구
-
-MediaPipe·손 인식 관련 활용 사례
-
-Indriani & Agoes (2021) — MediaPipe를 사용한 간단한 제스처 응용 사례로, MediaPipe의 실시간 손 랜드마크 추출이 상호작용 인터페이스에 실용적임을 보였다.
-적용: 본 시스템의 손가락 인식 모듈이 MediaPipe 기반으로 설계된 근거가 된다.
-Indriani, M. H., & Agoes, A. (2021). Applying hand gesture recognition for user guide application using MediaPipe. Advances in Engineering Research, 207, 297–301.
-
-Amprimo et al. (2024) — MediaPipe와 깊이(depth) 보강 모델의 임상적 검증 연구로, MediaPipe의 손 추적 정확도가 임상적 수준으로도 신뢰할 수 있음을 보였다.
-적용: 손가락 좌표 신뢰도/한계 판단 및 깊이(z) 정보를 이용한 전진/후진 연동 가능성 근거.
-Amprimo, G., et al. (2024). Hand tracking for clinical applications: Validation of the Google MediaPipe Hand (GMH) and the depth-enhanced GMH-D frameworks. Biomedical Signal Processing and Control, 96, 106508.
-
-Gil-Martín et al. (2025) — MediaPipe 랜드마크를 입력으로 한 딥러닝 분류 실험, 공간 정규화가 성능을 높인다는 결과 제시.
-적용: 본 연구의 정규화(손목 기준 중심화·크기 정규화) 및 시계열 입력 설계의 타당성 근거.
-Gil-Martín, M., et al. (2025). Hand gesture recognition using MediaPipe landmarks and deep learning networks. In Proceedings of ICAART 2025 (Vol. 3, pp. 24–30).
-
-손 동작을 이용한 차량/기계 제어 사례
-
-Huda et al. (2025) — MediaPipe 기반 실시간 제스처로 휠체어 제어한 사례. 소량의 손동작으로도 제어가 가능하다는 실험적 증거를 제공.
-적용: 손가락 기반 휠체어/차량 제어 가능성의 직접적 근거.
-Huda, M. R., Ali, M. L., & Sadi, M. S. (2025). Developing a real-time hand-gesture recognition technique for wheelchair control. PLOS One, 20(4), e0319996.
-
-Sadi et al. (2022) — 저비용 손가락 제스처 휠체어, 실사용성 검증.
-적용: 실사용 관점에서 단순 제스처(손가락 기반)가 접근성 향상에 기여한다는 근거.
-Sadi, M. S., et al. (2022). Finger-gesture controlled wheelchair with enabling IoT. Sensors, 22(24), 2107.
-
-Wameed et al. (2023), Swain & Bhoi (2024) — MediaPipe 기반 로봇·RC카 제어 사례로, 손 랜드마크를 실시간 명령으로 맵핑하는 전형적 파이프라인을 제시.
-적용: 본 연구의 명령→모터(PWM)/시리얼 송신 매핑 방법론과 유사한 선행 사례.
-Wameed, M., et al. (2023). Tracked robot control with hand gesture based on MediaPipe. Al-Khwarizmi Engineering Journal, 19(3), 56–71.
-Swain, B. K., & Bhoi, A. K. (2024). Single and multi-hand gesture based soft material robotic car control. Procedia Computer Science, 235, 3055–3064.
-
-컴퓨터 비전 기반 제어 인터페이스 총설
-
-Jalayer et al. (2026), Saravana et al. (2025), Bayoudh et al. (2021) — 비전 기반 제스처 인식/센서 선택/딥러닝 방법들의 장단점 및 적용 분야 총설.
-적용: 본 프로젝트에서 MediaPipe(랜드마크 기반)와 더 고급 학습기법(LSTM/Transformer)을 병용하는 설계 근거와, 환경·데이터 이슈(조명, 뷰포인트 등)를 정리하는 데 참고.
-Jalayer, R., et al. (2026). A review on deep learning for vision-based hand detection... Robotics and Computer-Integrated Manufacturing, 97, 103110.
-
-장애인을 위한 입력 인터페이스 연구
-
-Rojas et al. (2022), Haddoun et al. (2025) — 비전/IMU/음성 등 대체 입력의 평가 연구.
-적용: 손가락 기반 제어를 장애인 인터페이스의 한 축으로 보고, 멀티모달(예: 음성+손동작) 보완 전략을 권고.
-Rojas, M., et al. (2022). Development of a sensing platform based on hands-free interfaces... Frontiers in Human Neuroscience, 16, 867377.
-
-정리: 위 선행연구들은 MediaPipe 기반 손 랜드마크가 실시간 제어 입력으로 실용성이 있고, 손가락·제스처 기반 휠체어/로봇 제어의 성공 사례가 이미 존재함을 보여준다. 또한 공간 정규화·시계열 학습·안정화(시간 윈도우) 등의 기법이 인식 신뢰도를 높이는 데 핵심임을 입증한다.
-
-8. 결론
-
-본 연구는 MediaPipe 기반 손가락 개수 인식을 차량 제어에 적용하는 실용적 파이프라인을 제안하고, 관련 선행연구들을 근거로 설계·안정화·평가 계획을 제시했다. 손가락 개수라는 단순 입력은 장애 사용자의 접근성 향상 가능성을 보여주며, 향후 데이터 기반 학습·멀티모달 보완·임베디드 배포를 통해 실제 보조운전 시스템으로 발전시킬 수 있다.
-
-참고문헌
+\section{Reference}
 https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker/python?hl=ko
 
-1.Amprimo, G., Masi, G., Pettiti, G., Olmo, G., Priano, L., & Ferraris, C. (2024). Hand tracking for clinical applications: Validation of the Google MediaPipe Hand (GMH) and GMH-D frameworks. Biomedical Signal Processing and Control, 96, 106508.
 
-2.Gil-Martín, M., Marini, M. R., Martín-Fernández, I., & Esteban-Romero, S. (2025). Hand gesture recognition using MediaPipe landmarks and deep learning networks. In Proceedings of ICAART 2025 (Vol. 3, pp. 24–30). INSTICC Press.
+1.Amprimo, G., Masi, G., Pettiti, G., Olmo, G., Priano, L., & Ferraris, C. (2024). Hand tracking for clinical applications: Validation of the Google MediaPipe Hand (GMH) and GMH-D frameworks. Biomedical Signal Processing and Control, 96, 106508. 
 
-3.Indriani, M. H., & Agoes, A. (2021). Applying hand gesture recognition for user guide application using MediaPipe. Advances in Engineering Research, 207, 297–301.
+2.Gil-Martín, M., Marini, M. R., Martín-Fernández, I., & Esteban-Romero, S. (2025). Hand gesture recognition using MediaPipe landmarks and deep learning networks. In Proceedings of ICAART 2025 (Vol. 3, pp. 24–30). INSTICC Press. 
 
-4.Jalayer, R., Jalayer, M., Orsenigo, C., & Tomizuka, M. (2026). A review on deep learning for vision-based hand detection, hand segmentation and hand gesture recognition in human–robot interaction. Robotics and Computer-Integrated Manufacturing, 97, 103110.
+3.Indriani, M. H., & Agoes, A. (2021). Applying hand gesture recognition for user guide application using MediaPipe. Advances in Engineering Research, 207, 297–301. 
 
-5.Huda, M. R., Ali, M. L., & Sadi, M. S. (2025). Developing a real-time hand-gesture recognition technique for wheelchair control. PLOS One, 20(4), e0319996.
+4.Jalayer, R., Jalayer, M., Orsenigo, C., & Tomizuka, M. (2026). A review on deep learning for vision-based hand detection, hand segmentation and hand gesture recognition in human–robot interaction. Robotics and Computer-Integrated Manufacturing, 97, 103110. 
 
-6.Sadi, M. S., Alotaibi, M., Islam, M. R., Islam, M. S., Alhmiedat, T., & Bassfar, Z. (2022). Finger-gesture controlled wheelchair with enabling IoT. Sensors, 22(24), 2107.
+5.Huda, M. R., Ali, M. L., & Sadi, M. S. (2025). Developing a real-time hand-gesture recognition technique for wheelchair control. PLOS One, 20(4), e0319996. 
 
-7.Wameed, M., Alkamachi, A. M., & Ercelibi, E. (2023). Tracked robot control with hand gesture based on MediaPipe. Al-Khwarizmi Engineering Journal, 19(3), 56–71.
+6.Sadi, M. S., Alotaibi, M., Islam, M. R., Islam, M. S., Alhmiedat, T., & Bassfar, Z. (2022). Finger-gesture controlled wheelchair with enabling IoT. Sensors, 22(24), 2107. 
 
-8.Swain, B. K., & Bhoi, A. K. (2024). Single and multi-hand gesture based soft material robotic car control. Procedia Computer Science, 235, 3055–3064.
+7.Wameed, M., Alkamachi, A. M., & Ercelibi, E. (2023). Tracked robot control with hand gesture based on MediaPipe. Al-Khwarizmi Engineering Journal, 19(3), 56–71. 
 
-9.Saravana, S. M. K., Lishan, C. L., Rao, S. P., & Manushree, K. B. (2025). A comprehensive survey on gesture-controlled interfaces: Technologies, applications, and challenges. International Journal of Scientific Research in Science and Technology, 12(2), 1112–1136.
 
-10.Bayoudh, S., Masmoudi, M., & Chellali, R. (2021). Hand gesture recognition based on computer vision: A review of techniques. Mathematical Biosciences and Engineering, 18(4), 3582–3611.
+8.Swain, B. K., & Bhoi, A. K. (2024). Single and multi-hand gesture based soft material robotic car control. Procedia Computer Science, 235, 3055–3064. 
 
-11.Rojas, M., Ponce, P., & Molina, A. (2022). Development of a sensing platform based on hands-free interfaces for controlling electronic devices. Frontiers in Human Neuroscience, 16, 867377.
 
-12.Haddoun, A., Djabri, D., Saidani, M., & Benbouzid, M. (2025). Development and evaluation of a head-controlled wheelchair system for users with severe motor impairments. MethodsX, 15, 103485.
+9.Saravana, S. M. K., Lishan, C. L., Rao, S. P., & Manushree, K. B. (2025). A comprehensive survey on gesture-controlled interfaces: Technologies, applications, and challenges. International Journal of Scientific Research in Science and Technology, 12(2), 1112–1136. 
 
-13.Vysocký, A., Poštulka, T., Chlebek, J., Kot, T., Maslowski, J., & Grushko, S. (2023). Hand gesture interface for robot path definition in collaborative applications: Implementation and comparative study. Sensors, 23(9), 4219.
+
+10.Rojas, M., Ponce, P., & Molina, A. (2022). Development of a sensing platform based on hands-free interfaces for controlling electronic devices. Frontiers in Human Neuroscience, 16, 867377.
+ 
+11.Haddoun, A., Djabri, D., Saidani, M., & Benbouzid, M. (2025). Development and evaluation of a head-controlled wheelchair system for users with severe motor impairments. MethodsX, 15, 103485. 
+
+
+12.Vysocký, A., Poštulka, T., Chlebek, J., Kot, T., Maslowski, J., & Grushko, S. (2023). Hand gesture interface for robot path definition in collaborative applications: Implementation and comparative study. Sensors, 23(9), 4219.
+
+\end{document}

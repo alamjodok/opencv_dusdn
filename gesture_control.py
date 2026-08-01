@@ -23,11 +23,10 @@ class GestureTemplate:
 
 
 def normalized_landmarks(hand_landmarks: object) -> np.ndarray:
-    """손목을 원점으로, 손 크기를 1로 정규화한 21 x 3 관절 좌표를 만든다."""
     points = np.array(
         [[point.x, point.y, point.z] for point in hand_landmarks.landmark], dtype=np.float32
     )
-    points -= points[0]  # 손목 기준 상대 좌표
+    points -= points[0]
     scale = np.max(np.linalg.norm(points[:, :2], axis=1))
     if scale > 1e-6:
         points /= scale
@@ -35,21 +34,18 @@ def normalized_landmarks(hand_landmarks: object) -> np.ndarray:
 
 
 def grid_feature(hand_landmarks: object, frame_shape: tuple[int, ...]) -> np.ndarray:
-    """알고리즘 1의 격자 점유율과 손바닥 기울기/방향 특징을 계산한다."""
     height, width = frame_shape[:2]
     points = np.array(
         [[int(point.x * width), int(point.y * height)] for point in hand_landmarks.landmark],
         dtype=np.int32,
     )
 
-    # 손의 외곽선을 채워 각 격자 안에 손이 차지하는 비율을 얻는다.
     mask = np.zeros((height, width), dtype=np.uint8)
     hull = cv2.convexHull(points)
     cv2.fillConvexPoly(mask, hull, 255)
     small_mask = cv2.resize(mask, (GRID_COLS, GRID_ROWS), interpolation=cv2.INTER_AREA)
     occupancy = (small_mask.astype(np.float32) / 255.0).reshape(-1)
 
-    # 손목(0)에서 가운데손가락 MCP(9)로 향하는 벡터를 손바닥/팔 방향으로 사용한다.
     direction = points[9].astype(np.float32) - points[0].astype(np.float32)
     angle = float(np.arctan2(direction[1], direction[0]))
     orientation = np.array([np.sin(angle), np.cos(angle)], dtype=np.float32)
@@ -57,12 +53,10 @@ def grid_feature(hand_landmarks: object, frame_shape: tuple[int, ...]) -> np.nda
 
 
 def landmark_error(template: np.ndarray, current: np.ndarray) -> float:
-    """알고리즘 2: 각 손가락 관절·손끝의 정규화 좌표 평균제곱오차."""
     return float(np.mean(np.square(template - current)))
 
 
 def grid_error(template: np.ndarray, current: np.ndarray) -> float:
-    """알고리즘 1: 격자 영역과 손 기울기/방향 차이를 가중 비교한다."""
     grid_length = GRID_ROWS * GRID_COLS
     occupancy_error = np.mean(np.square(template[:grid_length] - current[:grid_length]))
     orientation_error = np.mean(np.square(template[grid_length:] - current[grid_length:]))
@@ -102,7 +96,6 @@ def best_match(
     current_landmarks: np.ndarray,
     algorithm: int,
 ) -> tuple[str | None, float, float]:
-    """가장 가까운 등록 동작과 오차, 해당 알고리즘의 허용 임계값을 반환한다."""
     if algorithm == 1:
         errors = [grid_error(item.grid_feature, current_grid) for item in templates]
         threshold = GRID_THRESHOLD
@@ -131,7 +124,7 @@ def main() -> None:
     templates = load_templates(args.templates)
     to_register = args.register
     recognition_active = False
-    algorithm = 2  # 보고서 결론에서 안정적인 알고리즘 2를 기본값으로 사용
+    algorithm = 2
     stable_command: str | None = None
     stable_count = 0
     displayed_command: str | None = None
@@ -161,7 +154,6 @@ def main() -> None:
                     break
                 frame = cv2.flip(frame, 1)
 
-                # 3.3: 가우시안 블러로 입력 노이즈를 줄인 뒤 손 랜드마크를 추출한다.
                 filtered = cv2.GaussianBlur(frame, (5, 5), 0)
                 result = hands.process(cv2.cvtColor(filtered, cv2.COLOR_BGR2RGB))
                 current_grid = None
@@ -193,7 +185,6 @@ def main() -> None:
                                 stable_count += 1
                             else:
                                 stable_command, stable_count = command, 1
-                            # 연속 3프레임 일치 후에만 결과를 확정해 일시적 오인식을 줄인다.
                             if stable_count >= 3:
                                 displayed_command = command
                                 draw_text(frame, f"DETECTED: {command}", (30, 160), (255, 0, 0))
@@ -211,10 +202,10 @@ def main() -> None:
                     break
                 if key == ord("1"):
                     algorithm = 1
-                    print("알고리즘 1(격자·방향 비교)을 선택했습니다.")
+                    print("알고리즘 1")
                 elif key == ord("2"):
                     algorithm = 2
-                    print("알고리즘 2(랜드마크 비교)를 선택했습니다.")
+                    print("알고리즘 2")
                 elif key == ord("b") and to_register == 0:
                     recognition_active = not recognition_active
                     stable_command, stable_count = None, 0
@@ -228,7 +219,6 @@ def main() -> None:
                     if not command:
                         print("빈 명령은 등록하지 않습니다.")
                         continue
-                    # 15개 최근 프레임의 중앙값을 저장해 일시적인 검출 노이즈를 완화한다.
                     templates.append(
                         GestureTemplate(
                             command=command,
